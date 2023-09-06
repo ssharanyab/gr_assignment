@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:gr_assignment/views/home_page.dart';
+import 'package:gr_assignment/controller.dart';
+import 'package:gr_assignment/views/new_task.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +14,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
           textTheme: GoogleFonts.poppinsTextTheme(
@@ -22,11 +24,19 @@ class MyApp extends StatelessWidget {
                   bodySmall: const TextStyle(),
                 )
                 .apply(
-                  bodyColor: Colors.white,
+                  bodyColor: Colors.black,
                 ),
           ),
           iconTheme: const IconThemeData(color: Colors.white)),
-      home: const HomePage(),
+      home: const NewTask(),
+      initialBinding: InitialBinding(),
     );
+  }
+}
+
+class InitialBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.put(NewTaskController());
   }
 }
